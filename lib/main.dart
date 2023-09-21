@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: Design1(
+      bottomNavigationBar: Design3(
           items: navigationBarItems,
           selectedIndex: selectedIndex,
           onSelected: (index) {

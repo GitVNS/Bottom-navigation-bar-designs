@@ -35,7 +35,7 @@ class _Design3State extends State<Design3> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: widget.items.map((item) {
           var index = widget.items.indexOf(item);
-          return Flexible(
+          return Expanded(
             flex: 1,
             child: Material(
               color: Colors.transparent,
