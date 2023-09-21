@@ -1,3 +1,5 @@
+import 'package:bottom_navigation_bars/constants.dart';
+import 'package:bottom_navigation_bars/designs/design1.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,11 +12,65 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+      debugShowCheckedModeBanner: false,
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List<CustomBottomNavigationItem> navigationBarItems = [
+    CustomBottomNavigationItem(iconPath: Constants.home, label: "Home"),
+    CustomBottomNavigationItem(iconPath: Constants.search, label: "Search"),
+    CustomBottomNavigationItem(iconPath: Constants.create, label: "Create"),
+    CustomBottomNavigationItem(
+        iconPath: Constants.notification, label: "Notification"),
+    CustomBottomNavigationItem(iconPath: Constants.settings, label: "Settings"),
+  ];
+  int selectedIndex = 0;
+  final _pageController = PageController(initialPage: 0);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: Design1(
+          items: navigationBarItems,
+          selectedIndex: selectedIndex,
+          onSelected: (index) {
+            setState(() {
+              selectedIndex = index;
+              _pageController.jumpToPage(index);
+            });
+          }),
+      body: PageView(
+        controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: [
+          Container(),
+          Container(),
+          Container(),
+          Container(),
+          Container(),
+        ], //
       ),
     );
   }
+}
+
+class CustomBottomNavigationItem {
+  final String label;
+  final String iconPath;
+
+  CustomBottomNavigationItem({
+    required this.iconPath,
+    required this.label,
+  });
 }
