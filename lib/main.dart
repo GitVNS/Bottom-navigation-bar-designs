@@ -1,6 +1,6 @@
 import 'package:bottom_navigation_bars/constants.dart';
-import 'package:bottom_navigation_bars/designs/design1.dart';
 import 'package:flutter/material.dart';
+import 'designs/designs.dart';
 
 void main() {
   runApp(const MainApp());
@@ -53,13 +53,16 @@ class _HomeState extends State<Home> {
       body: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
-        children: [
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-        ], //
+        children: List.generate(
+          5,
+          (index) => Container(
+            alignment: Alignment.center,
+            child: Text(
+              "Navbar Design 1\nPage ${index + 1}",
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ), //
       ),
     );
   }

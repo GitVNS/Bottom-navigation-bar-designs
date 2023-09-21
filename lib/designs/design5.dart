@@ -3,8 +3,8 @@ import 'package:bottom_navigation_bars/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Design1 extends StatefulWidget {
-  const Design1({
+class Design5 extends StatefulWidget {
+  const Design5({
     super.key,
     required this.items,
     required this.selectedIndex,
@@ -16,10 +16,10 @@ class Design1 extends StatefulWidget {
   final SelectedCallback onSelected;
 
   @override
-  State<Design1> createState() => _Design1State();
+  State<Design5> createState() => _Design5State();
 }
 
-class _Design1State extends State<Design1> {
+class _Design5State extends State<Design5> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,9 +41,6 @@ class _Design1State extends State<Design1> {
               child: InkWell(
                 onTap: () => widget.onSelected(index),
                 child: Ink(
-                  color: widget.selectedIndex == index
-                      ? Colors.blue
-                      : Colors.white,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -51,20 +48,21 @@ class _Design1State extends State<Design1> {
                         item.iconPath,
                         colorFilter: ColorFilter.mode(
                             widget.selectedIndex == index
-                                ? Colors.white
+                                ? Colors.blue
                                 : Colors.black,
                             BlendMode.srcATop),
                       ),
-                      Text(
-                        item.label,
-                        style: TextStyle(
-                            color: widget.selectedIndex == index
-                                ? Colors.white
-                                : Colors.black,
-                            fontSize: 10,
-                            fontWeight: widget.selectedIndex == index
-                                ? FontWeight.w600
-                                : FontWeight.w400),
+                      AnimatedContainer(
+                        margin: const EdgeInsets.all(2),
+                        duration: const Duration(milliseconds: 400),
+                        width: 5,
+                        height: 5,
+                        decoration: BoxDecoration(
+                          color: widget.selectedIndex == index
+                              ? Colors.blue
+                              : Colors.transparent,
+                          shape: BoxShape.circle,
+                        ),
                       ),
                     ],
                   ),
